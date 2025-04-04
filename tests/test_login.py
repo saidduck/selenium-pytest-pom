@@ -5,8 +5,8 @@ from utils.config import Config
 
 class TestLogin:
 
-    @pytest.fixture(scope="class")
-    def setup(self):
+    @pytest.fixture(scope="class", autouse=True)
+    def setup_class(self):
         self.driver = webdriver.Chrome()  # You can change this to your preferred WebDriver
         self.driver.get(Config.URL)
         self.login_page = LoginPage(self.driver)
