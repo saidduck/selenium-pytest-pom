@@ -15,12 +15,13 @@ class TestLogin:
         yield
         request.cls.driver.quit()
 
+    def test_login_failure(self):
+        self.login_page.login(Config.INVALID_USERNAME, Config.INVALID_PASSWORD)
+        time.sleep(5)
+        assert self.login_page.is_login_failed() == True
+
     def test_login_success(self):
         self.login_page.login(Config.VALID_USERNAME, Config.VALID_PASSWORD)
         time.sleep(5)
         assert self.login_page.is_login_successful() == True
 
-    def test_login_failure(self):
-        self.login_page.login(Config.INVALID_USERNAME, Config.INVALID_PASSWORD)
-        time.sleep(5)
-        assert self.login_page.is_login_successful() == False
